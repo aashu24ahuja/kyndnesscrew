@@ -1,7 +1,6 @@
 "use server";
 
-import { appendFile, mkdir } from "node:fs/promises";
-import path from "node:path";
+import { saveReport } from "@/lib/report-store";
 import { NEED_TYPES, URGENCY } from "@/lib/site";
 
 export type ReportState = {
@@ -45,24 +44,18 @@ export async function submitReport(
   }
 
   const reference = `KC-${Date.now().toString(36).toUpperCase()}`;
-  const record = {
-    reference,
-    submittedAt: new Date().toISOString(),
-    needs,
-    location,
-    landmark,
-    description,
-    people,
-    urgency,
-    reporter: { name: reporterName, phone: reporterPhone },
-    status: "pending-evaluation",
-  };
-
-  // Local file store for now; swap for a database before deploying.
   try {
-    const dir = path.join(process.cwd(), "data");
-    await mkdir(dir, { recursive: true });
-    await appendFile(path.join(dir, "reports.jsonl"), JSON.stringify(record) + "\n");
+    await saveReport({
+      reference,
+      submittedAt: new Date().toISOString(),
+      needs,
+      location,
+      landmark,
+      description,
+      people,
+      urgency,
+      reporter: { name: reporterName, phone: reporterPhone },
+    });
   } catch (err) {
     console.error("Failed to store report", err);
     return {

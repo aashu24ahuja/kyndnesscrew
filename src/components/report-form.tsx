@@ -80,7 +80,7 @@ export function ReportForm() {
           onClick={() => window.location.reload()}
           className="mt-8 rounded-full border border-forest px-5 py-2.5 text-sm font-medium text-forest transition-colors hover:bg-forest hover:text-cream"
         >
-          Report another person
+          Report another need
         </button>
       </div>
     );
