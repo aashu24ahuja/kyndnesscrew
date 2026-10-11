@@ -4,7 +4,7 @@ import credits from "@/lib/photo-credits.json";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `Photo credits — ${SITE.name}`,
+  title: "Photo credits",
 };
 
 export default function CreditsPage() {
