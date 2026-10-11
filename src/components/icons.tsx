@@ -33,6 +33,12 @@ export const PhoneIcon = (p: IconProps) => (
   </Base>
 );
 
+export const PhoneCallIcon = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" />
+  </Base>
+);
+
 export const PinIcon = (p: IconProps) => (
   <Base {...p}>
     <path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z" />

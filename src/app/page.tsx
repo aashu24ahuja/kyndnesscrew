@@ -10,6 +10,7 @@ import {
   EyeIcon,
   HandsIcon,
   InstagramIcon,
+  PhoneCallIcon,
   PhoneIcon,
   PinIcon,
   ShieldIcon,
@@ -653,6 +654,12 @@ function Footer() {
             className="mt-4 inline-flex items-center gap-2 text-sm text-cream/80 hover:text-cream"
           >
             <InstagramIcon className="size-5" /> {SITE.instagramHandle}
+          </a>
+          <a
+            href={SITE.phoneHref}
+            className="mt-3 flex items-center gap-2 text-sm text-cream/80 hover:text-cream"
+          >
+            <PhoneCallIcon className="size-5" /> {SITE.phone}
           </a>
           <p className="mt-4 text-sm text-cream/60">Emergency? Call 112 first.</p>
         </div>

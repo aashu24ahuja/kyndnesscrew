@@ -8,25 +8,22 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3000. Without Google Sheet settings, reports are written to `data/reports.jsonl` (git-ignored).
+Open http://localhost:3000. Without Supabase settings, reports are written to `data/reports.jsonl` (git-ignored).
 
-## Report intake (Google Sheet)
+## Report intake (Supabase)
 
-Reports from the form are added as rows to a Google Sheet through a small Apps Script web app.
+Reports from the form are inserted into the `reports` table in Supabase.
 
-1. Create a Google Sheet (e.g. "Kindness Crew reports") with the account that should own the data.
-2. In the sheet, open **Extensions → Apps Script**, replace the contents of `Code.gs` with [`google-apps-script/Code.gs`](google-apps-script/Code.gs), and save.
-3. Generate a long random secret (for example `openssl rand -hex 32`). In Apps Script open **Project Settings → Script properties**, add a property named `SECRET` with that value.
-4. Click **Deploy → New deployment**, choose type **Web app**, set **Execute as: Me** and **Who has access: Anyone**, then deploy and authorise. Copy the web app URL (ends in `/exec`).
-5. Set the environment variables (in `.env.local` for local testing, and in your hosting provider for production):
+1. In the Supabase dashboard, open **SQL Editor**, paste [`supabase/migrations/20261011000000_create_reports.sql`](supabase/migrations/20261011000000_create_reports.sql) and run it.
+2. Set the environment variables (in `.env.local` locally, and in your hosting provider for production):
 
    ```
-   GOOGLE_SHEET_WEBHOOK_URL=<web app URL>
-   GOOGLE_SHEET_SECRET=<the same secret>
+   NEXT_PUBLIC_SUPABASE_URL=https://<project>.supabase.co
+   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
    ```
 
-6. Submit a test report on the site. A **Reports** tab appears with a header row; "Needs help today" rows are highlighted. Volunteers can use the **Status**, **Volunteer** and **Notes** columns.
+3. Submit a test report; it appears in **Table Editor → reports** with status `new`.
 
-Reports contain reporters' phone numbers, so share the sheet only with verified volunteers. If you edit `Code.gs` later, use **Deploy → Manage deployments → Edit → New version** so the URL stays the same.
+Row-level security lets the public key **insert** reports only — nobody can read, change or delete them through the site's key. The team triages in the Table Editor using the `status` (`new`, `assigned`, `visited`, `helped`, `closed`), `volunteer` and `notes` columns. Reports include reporters' phone numbers, so only invite verified volunteers to the Supabase project.
 
-In production, the site refuses to accept reports if the sheet isn't configured, so nothing is silently lost.
+Without Supabase settings, development writes reports to `data/reports.jsonl`; production refuses submissions rather than losing them.
