@@ -113,10 +113,6 @@ const FAQS = [
     a: "No. Reporting is enough. If you'd like to stay involved, you can join as a volunteer — but there's never any obligation.",
   },
   {
-    q: "Is this an emergency service?",
-    a: "No. If someone's life is in immediate danger, please call your local emergency number (112 in India) first, then report to us so we can follow up.",
-  },
-  {
     q: "Will the person's information be made public?",
     a: "Never. Reports are visible only to verified volunteers working on that case. We don't post photos or stories of anyone without their consent.",
   },
@@ -400,7 +396,6 @@ function ReportSection() {
             {[
               "A volunteer near the location reviews every report.",
               "Your contact details are optional and never shared publicly.",
-              "In a life-threatening emergency, call 112 first.",
             ].map((t) => (
               <li key={t} className="flex gap-3 text-[15px] text-ink">
                 <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-forest text-cream">
@@ -661,7 +656,6 @@ function Footer() {
           >
             <PhoneCallIcon className="size-5" /> {SITE.phone}
           </a>
-          <p className="mt-4 text-sm text-cream/60">Emergency? Call 112 first.</p>
         </div>
       </div>
       <div className="border-t border-cream/10">
