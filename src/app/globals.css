@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+:root {
+  --cream: #fbfaf4;
+  --mint: #eaf4ec;
+  --mint-strong: #d3e9d8;
+  --leaf: #2f9e5b;
+  --forest: #146c3c;
+  --pine: #0d3b24;
+  --ink: #14251b;
+  --muted: #4c5e53;
+  --sun: #f4c35a;
+  --line: #dbe5dc;
+}
+
+@theme inline {
+  --color-cream: var(--cream);
+  --color-mint: var(--mint);
+  --color-mint-strong: var(--mint-strong);
+  --color-leaf: var(--leaf);
+  --color-forest: var(--forest);
+  --color-pine: var(--pine);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-sun: var(--sun);
+  --color-line: var(--line);
+  --font-sans: var(--font-lexend);
+}
+
+/* Flat design: no shadows anywhere, in any state. */
+*,
+*::before,
+*::after {
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-lexend), system-ui, sans-serif;
+}
+
+:focus-visible {
+  outline: 2px solid var(--forest);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--mint-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
