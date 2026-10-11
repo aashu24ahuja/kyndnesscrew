@@ -1,9 +1,11 @@
 export const SITE = {
-  name: "Kindness Crew",
+  name: "Kyndness Crew",
   description:
     "A community-driven platform to identify and assist underprivileged individuals. Report someone in need and our volunteers will evaluate on the ground.",
   instagram: "https://www.instagram.com/thekyndnesscrew/",
   instagramHandle: "@thekyndnesscrew",
+  phone: "+91 98606 79558",
+  phoneHref: "tel:+919860679558",
 };
 
 export const NEED_TYPES = [

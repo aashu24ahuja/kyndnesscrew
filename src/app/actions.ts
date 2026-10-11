@@ -47,7 +47,6 @@ export async function submitReport(
   try {
     await saveReport({
       reference,
-      submittedAt: new Date().toISOString(),
       needs,
       location,
       landmark,
